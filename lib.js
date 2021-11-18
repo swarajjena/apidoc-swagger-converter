@@ -9,6 +9,8 @@ const apidoc_to_swagger = require('./apidoc_to_swagger');
 apidoc.setGeneratorInfos({ name: 'name', time: new Date(), version: '0.0.1', url: 'xxx url' })
 
 
+console.warn = () => { }
+
 function generateLog() {
     var log = winston.createLogger({
         transports: [
@@ -52,6 +54,8 @@ function main(options) {
         api["swaggerData"] = JSON.stringify(swagger);
         createOutputFile(api, app.options.log)
     }
+
+    console.log("\x1b[32m", "✔️  Successfully generated swagger.json file\n\n")
 }
 
 

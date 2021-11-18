@@ -1,8 +1,16 @@
 var _ = require('lodash');
 var { pathToRegexp } = require('path-to-regexp');
-const { debug, log } = require('winston');
+const winston = require('winston');
 const GenerateSchema = require('generate-schema')
 
+const log = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'logfile.log' })
+    ]
+});
 
 var swagger = {
     swagger: "2.0",
@@ -14,8 +22,7 @@ function toSwagger(apidocJson, projectJson) {
     swagger.info = addInfo(projectJson);
     swagger.paths = extractPaths(apidocJson);
     swagger.tags = projectJson.groups || [];
-    console.log(swagger.paths[0])
-    console.log("\n\n\n\n\n\n\n\n\n\n\n")
+    console.log("\n\n\n")
     // for (const key in swagger) {
     //     console.log('[%s] %o', key, swagger[key]);
     // }
@@ -69,7 +76,7 @@ function extractPaths(apidocJson) {
             try {
                 _.extend(obj, generateProps(verb, pathKeys))
             } catch (err) {
-                console.warn("Warn : Invalid APIDOC syntax in", verb.filename)
+                log.warn("Invalid apidoc syntax in" + verb.filename)
             }
 
         }
@@ -354,7 +361,7 @@ function safeParseJson(content) {
     try {
         json = JSON.parse(mayContentString)
     } catch (error) {
-        console.warn('parse error', error)
+        // console.warn('parse error', error)
     }
 
     return {
