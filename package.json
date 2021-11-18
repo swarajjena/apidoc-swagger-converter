@@ -1,0 +1,38 @@
+{
+    "name": "apidoc-swagger-converter",
+    "version": "1.0.1",
+    "description": "Convert api doc json to swagger-3.0 json",
+    "author": "swaraj jena",
+    "main": "bin.js",
+    "bin": "bin.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/swarajjena/apidoc-swagger-4"
+    },
+    "bugs": {
+        "url": "https://github.com/swarajjena/apidoc-swagger-4/issues"
+    },
+    "keywords": [
+        "api",
+        "apidoc",
+        "doc",
+        "documentation",
+        "swagger",
+        "swagger-3.0"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "apidoc-core": "^0.15.0",
+        "commander": "^8.3.0",
+        "generate-schema": "^2.6.0",
+        "lodash": "^4.17.20",
+        "path-to-regexp": "^6.1.0",
+        "winston": "^3.3.3"
+    },
+    "peerDependencies": {
+        "typescript": "^4.1.3"
+    }
+}
