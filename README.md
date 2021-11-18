@@ -66,6 +66,8 @@ By putting in line comments in the source code like this in javascript, you will
 */
 ```
 
+Then run the command to generate swagger.json
+<pre>apidoc-swagger-converter -i INPUT_DIR -o OUTPUT_DIR</pre> 
 
 it will output json [swagger.json](./doc/swagger.json)
 
