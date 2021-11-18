@@ -22,6 +22,7 @@ function toSwagger(apidocJson, projectJson) {
     swagger.info = addInfo(projectJson);
     swagger.paths = extractPaths(apidocJson);
     swagger.tags = projectJson.groups || [];
+    swagger.externalDocs = projectJson.externalDocs || {};
     console.log("\n\n\n")
     // for (const key in swagger) {
     //     console.log('[%s] %o', key, swagger[key]);
