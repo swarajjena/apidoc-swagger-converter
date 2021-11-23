@@ -223,6 +223,11 @@ function generateProps(verb, pathKeys) {
         responses
     }
 
+    if (verb.permission && verb.permission.length > 0 && verb.permission[0].name) {
+        pathItemObject[verb.type]["description"] = pathItemObject[verb.type]["description"] +
+            "\n\n__permission: " + verb.permission[0].name + "__"
+    }
+
     return pathItemObject
 
 }
