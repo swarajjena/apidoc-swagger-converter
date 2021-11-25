@@ -49,6 +49,11 @@ function main(options) {
         var apidocData = JSON.parse(api.data);
         var projectData = JSON.parse(api.project);
 
+        if (!app.options.apiprivate) {
+            //filter apis where permission is set
+            apidocData = apidocData.filter(api => !api.permission)
+        }
+
         const swagger = apidoc_to_swagger.toSwagger(apidocData, projectData)
 
         api["swaggerData"] = JSON.stringify(swagger);

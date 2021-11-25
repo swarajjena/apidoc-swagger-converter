@@ -35,14 +35,15 @@ program
 
     .option('--color', 'Turn off log color.', true)
 
-    // .option('--parse', 'Parse only the files and return the data, no file creation.', false)
-    .option('-p, --parsee', 'Parse only the files and return the data, no file creation', false)
+    .option('--parse', 'Parse only the files and return the data, no file creation.', false)
+    // .option('-p, --parsee', 'Parse only the files and return the data, no file creation', false)
 
     .option('--parse-filters <parse-filters>', 'Optional user defined filters. Format name=filename', collect, [])
     .option('--parse-languages <parse-languages>', 'Optional user defined languages. Format name=filename', collect, [])
     .option('--parse-parsers <parse-parsers>', 'Optional user defined parsers. Format name=filename', collect, [])
     .option('--parse-workers <parse-workers>', 'Optional user defined workers. Format name=filename', collect, [])
 
+    .option('--warn-error', 'Treat warnings as error and exit with error code.', false)
 
     .option('-s, --simulate', 'Execute but not write any file.', false)
 
@@ -60,6 +61,8 @@ const options = {
     verbose: argv.verbose,
     debug: argv.debug,
     parse: parsee,
+
+    apiprivate: argv.private,
 
     filters: transformToObject(argv.parseFilters),
     languages: transformToObject(argv.parseLanguages),
