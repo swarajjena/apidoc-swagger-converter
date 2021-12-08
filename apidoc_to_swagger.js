@@ -21,7 +21,14 @@ var swagger = {
 function toSwagger(apidocJson, projectJson) {
     swagger.info = addInfo(projectJson);
     swagger.paths = extractPaths(apidocJson);
-    swagger.tags = projectJson.groups || [];
+    let usedTags = [...new Set(Object.values(swagger.paths).reduce((mem, api) => {
+        return [...mem, ...Object.values(api).reduce((old, method) => {
+            return [...old, ...method.tags]
+        }, []
+        )]
+    }, []))]
+
+    swagger.tags = projectJson.groups.filter(group => usedTags.indexOf(group.name) >= 0) || [];
     swagger.externalDocs = projectJson.externalDocs || {};
     console.log("\n\n\n")
     // for (const key in swagger) {
