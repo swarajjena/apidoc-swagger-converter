@@ -106,7 +106,7 @@ function mapHeaderItem(i) {
 
 function mapUrlItem(i) {
     return {
-        type: 'string',
+        type: i.type ? i.type : 'string',
         in: 'path',
         name: i.field,
         description: removeTags(i.description),
@@ -118,7 +118,7 @@ function mapUrlItem(i) {
 
 function mapQueryItem(i) {
     return {
-        type: 'string',
+        type: i.type ? i.type : 'string',
         in: 'query',
         name: i.field,
         description: removeTags(i.description),
@@ -176,7 +176,8 @@ function transferApidocParamsToSwaggerBody(apiDocParams, parameterInBody) {
             if (!mountPlaces[objectName]['properties'][propertyName]) {
                 mountPlaces[objectName]['properties'][propertyName] = {
                     items: {
-                        type: type.slice(0, -2), description: i.description,
+                        type: type.slice(0, -2),
+                        description: i.description,
                         // default: i.defaultValue,
                         example: i.defaultValue
                     },
