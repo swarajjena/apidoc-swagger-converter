@@ -106,7 +106,7 @@ function mapHeaderItem(i) {
 
 function mapUrlItem(i) {
     return {
-        type: i.type ? i.type : 'string',
+        type: i.type ? i.type.toLowerCase() : 'string',
         in: 'path',
         name: i.field,
         description: removeTags(i.description),
@@ -118,7 +118,7 @@ function mapUrlItem(i) {
 
 function mapQueryItem(i) {
     return {
-        type: i.type ? i.type : 'string',
+        type: i.type ? i.type.toLowerCase() : 'string',
         in: 'query',
         name: i.field,
         description: removeTags(i.description),
